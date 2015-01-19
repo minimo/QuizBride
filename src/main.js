@@ -17,8 +17,8 @@ var DEBUG = false;
 var MUTEKI = false;
 
 //スクリーンサイズ
-SC_W = 640;
-SC_H = 640;
+SC_W = 1024;
+SC_H = 768;
 
 //レイヤー区分
 LAYER_SYSTEM = 2;

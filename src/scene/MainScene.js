@@ -7,7 +7,7 @@
  */
 (function() {
 
-tm.define("jsstg.MainScene", {
+tm.define("quiz.MainScene", {
     superClass: tm.app.Scene,
 
     //タッチ情報

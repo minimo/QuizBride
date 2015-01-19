@@ -1,5 +1,5 @@
 /*
- *  jsstg-2015spring
+ *  Application
  *  2015/01/06
  *  @auther minimo  
  *  This Program is MIT license.
@@ -25,7 +25,7 @@ quiz.Application = tm.createClass({
 
         this.keyboard = tm.input.Keyboard(window);
 
-        var loadingScene = jsstg.LoadingScene({
+        var loadingScene = quiz.LoadingScene({
             assets: quiz.assets,
             width: SC_W,
             height: SC_H,

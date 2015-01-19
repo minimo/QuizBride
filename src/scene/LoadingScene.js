@@ -6,7 +6,7 @@
  *
  */
 
-tm.define("jsstg.LoadingScene", {
+tm.define("quiz.LoadingScene", {
     superClass: "tm.app.Scene",
 
     init: function(param) {
@@ -24,7 +24,7 @@ tm.define("jsstg.LoadingScene", {
             children: {
                 bg: {
                     type: "tm.display.Shape",
-                    init: [param.width, param.height],
+                    init: {width:param.width, height:param.height},
                     originX: 0,
                     originY: 0,
                 },
