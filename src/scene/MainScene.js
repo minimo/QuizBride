@@ -27,12 +27,6 @@ tm.define("quiz.MainScene", {
     init: function() {
         this.superInit();
 
-        //レイヤー作成
-        this.layers = [];
-        for (var i = 0; i < LAYER_SYSTEM+1; i++) {
-            this.layers[i] = tm.app.Object2D().addChildTo(this);
-        }
-
         //システム表示ベース
         this.systemBase = tm.app.Object2D()
             .addChildTo(this)
@@ -52,16 +46,6 @@ tm.define("quiz.MainScene", {
 
     //タッチorクリック終了処理
     ontouchend: function(e) {
-    },
-
-    //addChildオーバーライド
-    addChild: function(child) {
-        if (child.layer === undefined) {
-            return this.superClass.prototype.addChild.apply(this, arguments);
-        }
-        child.parentScene = this;
-        child.player = this.player;
-        return this.layers[child.layer].addChild(child);
     },
 });
 

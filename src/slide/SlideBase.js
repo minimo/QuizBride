@@ -1,18 +1,15 @@
 /*
  *  SlideBase.js
- *  2015/01/09
+ *  2015/01/19
  *  @auther minimo  
  *  This Program is MIT license.
  */
 (function() {
 
 tm.define("quiz.SlideBase", {
-    superClass: "tm.display.CanvasElement",
+    superClass: "tm.app.Scene",
 
-    layer: LAYER_MAIN,    //所属レイヤー
-    parentScene: null,      //親シーン
-
-    init: function(name, x, y, id, param) {
+    init: function() {
         this.superInit();
         this.time = 0;
     },

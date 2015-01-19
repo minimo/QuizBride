@@ -20,11 +20,6 @@ var MUTEKI = false;
 SC_W = 1024;
 SC_H = 768;
 
-//レイヤー区分
-LAYER_SYSTEM = 2;
-LAYER_MAIN = 1;
-LAYER_BACKGROUND = 0;
-
 //インスタンス
 app = {};
 

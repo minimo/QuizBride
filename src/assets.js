@@ -8,8 +8,12 @@
 
 //アセット一覧
 quiz.assets = {
+    //Sprite
+    "think":      "assets/kuma.png",
+    "icon":       "assets/icon.png",
+
     //Font
-    "misaki":     "font/misaki_gothic.ttf",
+    "yasasihsa":  "font/07YasashisaAntique.ttf",
     "scoreboard": "font/scoreboard.ttf",
 }
 
