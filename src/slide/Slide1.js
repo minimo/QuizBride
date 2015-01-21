@@ -22,17 +22,17 @@ tm.define("quiz.Slide1", {
         answer3: "「芸術は爆発だ！」",
 
         answer: 2,
-};
+    },
 
     init: function(param) {
         this.superInit();
         this.time = 0;
 
-        this.slide0 = tm.display.Sprite("Q1-0")
+        this.slide0 = tm.display.Sprite("Q01-0")
             .addChildTo(this)
             .setPosition(SC_W*0.5, SC_H*0.5);
 
-        this.think = quiz.ThinkingTime(5)
+        this.think = quiz.ThinkingTime(60)
             .setPosition(0, 0);
     },
 

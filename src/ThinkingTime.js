@@ -11,8 +11,12 @@ tm.define("quiz.ThinkingTime", {
 
     labelParam: {fontFamily: "Yasashisa", align: "center", baseline: "middle",outlineWidth: 2, fontWeight:700},
 
+    finish: false,
+
     init: function(sec) {
         this.superInit();
+
+        var that = this;
 
         this.label = tm.display.OutlineLabel("シンキングタイム！", 100)
             .addChildTo(this)
@@ -27,7 +31,14 @@ tm.define("quiz.ThinkingTime", {
             .setAlpha(0)
             .setScale(5)
             .setRotation(20);
-        this.start.tweener.clear().wait(5000).fadeIn(10).to({scaleX:1, scaleY:1}, 2000, "easeOutBounce").wait(500).rotate(0, 1000, "easeOutBounce");
+        this.start.tweener.clear()
+            .wait(5000)
+            .fadeIn(10)
+            .to({scaleX:1, scaleY:1}, 2000, "easeOutBounce")
+            .wait(500)
+            .rotate(0, 1000, "easeOutBounce")
+            .wait(3000)
+            .fadeOut(500);
 
         this.timeup = tm.display.OutlineLabel("TIME UP!!", 100)
             .addChildTo(this)
@@ -61,6 +72,7 @@ tm.define("quiz.ThinkingTime", {
             .move(SC_W-96, SC_H*0.9, 1000*sec)
             .call(function() {
                 this.stop = true;
+                that.finish = true;
             }.bind(this.sprite));
 
         this.goal = tm.display.Sprite("think", 32, 32)
