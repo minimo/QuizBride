@@ -18,14 +18,23 @@ tm.define("quiz.ThinkingTime", {
             .addChildTo(this)
             .setParam(this.labelParam)
             .setPosition(SC_W*0.5, SC_H*0.5);
+        this.label.tweener.clear().wait(5000).fadeOut(10);
 
         this.start = tm.display.OutlineLabel("START", 100)
             .addChildTo(this)
             .setParam(this.labelParam)
             .setPosition(SC_W*0.5, SC_H*0.5)
             .setAlpha(0)
+            .setScale(5)
+            .setRotation(20);
+        this.start.tweener.clear().wait(5000).fadeIn(10).to({scaleX:1, scaleY:1}, 2000, "easeOutBounce").wait(500).rotate(0, 1000, "easeOutBounce");
+
+        this.timeup = tm.display.OutlineLabel("TIME UP!!", 100)
+            .addChildTo(this)
+            .setParam(this.labelParam)
+            .setPosition(SC_W*0.5, SC_H*0.5)
+            .setAlpha(0)
             .setScale(10);
-        this.start.tweener.clear().wait(5000).fadeIn(10).scale(1, 2000,"easeOutBaunce")
 
         this.sprite = tm.display.Sprite("think", 32, 32)
             .addChildTo(this)
@@ -81,6 +90,9 @@ tm.define("quiz.ThinkingTime", {
     },
 
     skip: function() {
+    },
+
+    finish: function() {
     },
 });
 
