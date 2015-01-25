@@ -50,7 +50,7 @@ tm.define("quiz.SlideBase", {
         this.msg = tm.app.Object2D().addChildTo(this);
 //        pt.tweener.wait(time).call(function(){this.remove();that.msg=null;}.bind(pt));
 
-        tm.display.RectangleShape(SC_W*0.8, 80, {fillStyle: "rgba(0,0,0,0.5)", strokeStyle: "rgba(0,0,0,0.5)"})
+        tm.display.RectangleShape(SC_W*0.9, 80, {fillStyle: "rgba(0,0,0,0.5)", strokeStyle: "rgba(0,0,0,0.5)"})
             .addChildTo(this.msg)
             .setPosition(SC_W*0.5, y);
 

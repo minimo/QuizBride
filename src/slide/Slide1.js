@@ -32,6 +32,7 @@ tm.define("quiz.Slide1", {
     //現在スライドシーケンス番号
     seq: 0,
     phase: 0,
+    wait: true,
 
     init: function(param) {
         this.superInit();
@@ -44,7 +45,7 @@ tm.define("quiz.Slide1", {
                 .setPosition(SC_W*2, SC_H*0.5);
         }
 
-        this.think = quiz.ThinkingTime(60)
+        this.think = quiz.ThinkingTime(10)
             .setPosition(0, 0);
     },
 
@@ -53,29 +54,40 @@ tm.define("quiz.Slide1", {
         if (kb.getKeyDown("s") && this.time > 15) {
             this.phase++;
             this.time = 0;
-        }
-        if (this.phase == 1) {
-            this.slide[this.seq].tweener.clear().moveBy(-SC_W*1.5, 0, 500, "easeOutSine");
-            this.seq++;
-            this.phase++;
-        }
-        if (this.phase == 3) {
-            this.slide[this.seq].tweener.clear().moveBy(-SC_W*1.5, 0, 500, "easeOutSine");
-            this.seq++;
-            this.phase++;
-        }
-        if (this.phase == 5) {
-            this.enterMessage(SC_H*0.8, 3000, this.question[1]);
-            this.phase++;
-        }
-        if (this.phase == 7) {
-//            this.slide[this.seq].tweener.clear().moveBy(-SC_W*1.5, 0, 500, "easeOutSine");
-            this.enterMessage(SC_H*0.8, 3000, this.question[2]);
-//            this.seq++;
-            this.phase++;
+            this.wait = false;
+        }　else {
+            this.time++;
         }
 
-        this.time++;
+        if (this.wait) return;
+        this.think.addChildTo(this);
+
+        switch (this.phase) {
+            case 1:
+//                this.slide[this.seq++].tweener.clear().moveBy(-SC_W*1.5, 0, 500, "easeOutSine");
+                break;
+            case 2:
+                this.slide[this.seq++].tweener.clear().moveBy(-SC_W*1.5, 0, 500, "easeOutSine");
+                break;
+            case 3:
+                this.enterMessage(SC_H*0.8, 3000, this.question[1]);
+                break;
+            case 4:
+                this.slide[this.seq++].tweener.clear().moveBy(-SC_W*1.5, 0, 500, "easeOutSine");
+                this.enterMessage(SC_H*0.8, 3000, this.question[2]);
+                break;
+            case 5:
+                this.slide[this.seq++].tweener.clear().moveBy(-SC_W*1.5, 0, 500, "easeOutSine");
+                this.enterMessage(SC_H*0.8, 3000, this.question[3]);
+                break;
+            case 6:
+                this.enterMessage(SC_H*0.8, 3000, this.question[4]);
+                break;
+            case 7:
+                this.enterMessage(SC_H*0.8, 3000, this.question[5]);
+                break;
+        }
+        this.wait = true;
     },
 });
 

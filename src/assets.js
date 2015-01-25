@@ -19,8 +19,8 @@ quiz.assets = {
     //Slide
     "Q01-0":"slide/Q01-0.jpg",
     "Q01-1":"slide/Q01-1.jpg",
-    "Q01-2":"slide/Q01-2.jpg",
-    "Q01-3":"slide/Q01-3.jpg",
+    "Q01-2":"slide/Q01-3.jpg",
+    "Q01-3":"slide/Q01-2.jpg",
     "Q01-4":"slide/Q01-4.jpg",
 
     "Q02-0":"slide/Q02-0.jpg",
