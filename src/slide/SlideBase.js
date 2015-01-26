@@ -94,21 +94,26 @@ tm.define("quiz.SlideBase", {
         this.eraseMessage();
         this.message = tm.app.Object2D().addChildTo(this);
 
+        this.ans = [];
         for (var i = 0; i < 4; i++) {
             var y =  SC_H*0.27+SC_H*i*0.15;
-            var base = tm.display.RectangleShape({width: SC_W*0.9, height: 80, fillStyle: "rgba(0,0,0,0.5)", strokeStyle: "rgba(0,0,0,0.5)"})
+            this.ans[i] = tm.display.RectangleShape({width: SC_W*0.9, height: 80, fillStyle: "rgba(0,0,0,0.5)", strokeStyle: "rgba(0,0,0,0.5)"})
                 .addChildTo(this.message)
                 .setPosition(SC_W*0.5, y);
 
             var msg = this.answer[i] || "undefined";
             tm.display.OutlineLabel(msg, size)
-                .addChildTo(base)
+                .addChildTo(this.ans[i])
                 .setParam(this.labelParamAns)
                 .setPosition(x-SC_W*0.5, 0);
         }
     },
 
     dispCorrect: function() {
+        for (var i = 0; i < 4; i++) {
+            if (this.correct == i) continue;
+            this.ans[i].tweener.fadeOut(300);
+        }
     },
 });
 

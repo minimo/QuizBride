@@ -45,7 +45,7 @@ tm.define("quiz.Slide1", {
 
     update: function() {
         var kb = app.keyboard;
-        if (kb.getKeyDown("s") && this.time > 15) {
+        if (kb.getKeyDown("s") && this.time > 5) {
             this.phase++;
             this.time = 0;
             this.wait = false;
@@ -87,6 +87,10 @@ tm.define("quiz.Slide1", {
                 break;
             case 10:
                 this.think.start(10);
+                break;
+            case 11:
+                this.dispCorrect();
+                this.think.leaveStage();
                 break;
         }
         this.wait = true;
