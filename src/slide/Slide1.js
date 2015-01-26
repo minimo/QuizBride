@@ -9,43 +9,37 @@
 tm.define("quiz.Slide1", {
     superClass: "quiz.SlideBase",
 
-    labelParam: {fontFamily: "Yasashisa", align: "center", baseline: "middle",outlineWidth: 2, fontWeight:700},
+    //画像
+    paper: [
+        "Q01-0",
+        "Q01-1",
+        "Q01-2",
+        "Q01-3",
+        "Q01-4",
+    ],
 
-    question: {
-        "1": "何事にも万全を持って臨む新郎",
-        "2": "それは初デートの時も例外ではありません",
-        "3": "さて、この「３」という数字",
-        "4": "これは初デートに関係ある数字だそうです",
-        "5": "それは以下のうちどれでしょうか？",
+    //質問
+    question: [
+        "何事にも万全を持って臨む新郎",
+        "それは初デートの時も例外ではありません",
+        "さて、この「３」という数字",
+        "これは初デートに関係ある数字だそうです",
+        "それは以下のうちどれでしょうか？",
+    ],
 
-        "question1":"Ｑ１．初デートにまつわる数字",
-        "question2":"「３」",
-        "question3":"これは何の数字でしょうか？",
-
-        "answer1": "提案したプランの数",
-        "answer2": "残りの変身回数",
-        "answer3": "渡したプレゼントの数",
-
-        "answer": 1,
-    },
-
-    //現在スライドシーケンス番号
-    seq: 0,
-    phase: 0,
-    wait: true,
+    //答え一覧
+    answer: [
+        "①　提案したプランの数",
+        "②　渡したプレゼントの数",
+        "③　デートで回った場所の数",
+        "④　残りの変身回数",
+    ],
 
     init: function(param) {
         this.superInit();
         this.time = 0;
 
-        this.slide = [];
-        for (var i = 0; i < 5; i++) {
-            this.slide[i] = tm.display.Sprite("Q01-"+i)
-                .addChildTo(this)
-                .setPosition(SC_W*2, SC_H*0.5);
-        }
-
-        this.think = quiz.ThinkingTime(10)
+        this.think = quiz.ThinkingTime()
             .setPosition(0, 0);
     },
 
@@ -60,31 +54,39 @@ tm.define("quiz.Slide1", {
         }
 
         if (this.wait) return;
-        this.think.addChildTo(this);
 
         switch (this.phase) {
             case 1:
-//                this.slide[this.seq++].tweener.clear().moveBy(-SC_W*1.5, 0, 500, "easeOutSine");
+                this.advanceSlide();
                 break;
             case 2:
-                this.slide[this.seq++].tweener.clear().moveBy(-SC_W*1.5, 0, 500, "easeOutSine");
+                this.advanceSlide();
                 break;
             case 3:
-                this.enterMessage(SC_H*0.8, 3000, this.question[1]);
+                this.enterMessage(SC_H*0.8, this.msg++);
                 break;
             case 4:
-                this.slide[this.seq++].tweener.clear().moveBy(-SC_W*1.5, 0, 500, "easeOutSine");
-                this.enterMessage(SC_H*0.8, 3000, this.question[2]);
+                this.advanceSlide();
+                this.enterMessage(SC_H*0.8, this.msg++);
                 break;
             case 5:
-                this.slide[this.seq++].tweener.clear().moveBy(-SC_W*1.5, 0, 500, "easeOutSine");
-                this.enterMessage(SC_H*0.8, 3000, this.question[3]);
+                this.advanceSlide();
+                this.enterMessage(SC_H*0.8, this.msg++);
                 break;
             case 6:
-                this.enterMessage(SC_H*0.8, 3000, this.question[4]);
+                this.enterMessage(SC_H*0.8, this.msg++);
                 break;
             case 7:
-                this.enterMessage(SC_H*0.8, 3000, this.question[5]);
+                this.enterMessage(SC_H*0.8, this.msg++);
+                break;
+            case 8:
+                this.enterAnswer();
+                break;
+            case 9:
+                this.think.addChildTo(this);
+                break;
+            case 10:
+                this.think.start(10);
                 break;
         }
         this.wait = true;

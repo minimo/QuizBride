@@ -9,61 +9,106 @@
 tm.define("quiz.SlideBase", {
     superClass: "tm.app.Scene",
 
-    question: {
-        "1": "‰½–‚É‚à–œ‘S‚ğ‚Á‚Ä—Õ‚ŞV˜Y",
-        "2": "‚»‚ê‚Í‰ƒf[ƒg‚Ì‚à—áŠO‚Å‚Í‚ ‚è‚Ü‚¹‚ñ",
-        "3": "‚³‚ÄA‚±‚Ìu‚Rv‚Æ‚¢‚¤”š",
-        "4": "‚±‚ê‚Í‰ƒf[ƒg‚ÉŠÖŒW‚ ‚é”š‚¾‚»‚¤‚Å‚·",
-        "5": "‚»‚ê‚ÍˆÈ‰º‚Ì‚¤‚¿‚Ç‚ê‚Å‚µ‚å‚¤‚©H",
+    labelParam:     {fontFamily:"Yasashisa", align:"center", baseline:"middle", outlineWidth:2, fontWeight:700},
+    labelParamAns:  {fontFamily:"Yasashisa", align:"left", baseline:"middle", outlineWidth:2, fontWeight:700},
 
-        "question1":"‚p‚PD‰ƒf[ƒg‚É‚Ü‚Â‚í‚é”š",
-        "question2":"u‚Rv",
-        "question3":"‚±‚ê‚Í‰½‚Ì”š‚Å‚µ‚å‚¤‚©H",
+    //ç”»åƒ
+    paper: [],
 
-        "answer1": "’ñˆÄ‚µ‚½ƒvƒ‰ƒ“‚Ì”",
-        "answer2": "c‚è‚Ì•Ïg‰ñ”",
-        "answer3": "“n‚µ‚½ƒvƒŒƒ[ƒ“ƒg‚Ì”",
+    //è³ªå•
+    question: [],
 
-        "answer": 1,
-    },
+    //ç­”ãˆä¸€è¦§
+    answer: [],
 
-    msg: null,
+    //æ­£è§£ç•ªå·
+    correct: 0,
+
+    //ã‚¹ãƒ©ã‚¤ãƒ‰ç”¨ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆé…åˆ—
+    slide: [],
+
+    //ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºç”¨
+    message: null,
+
+    //ç¾åœ¨ã‚¹ãƒ©ã‚¤ãƒ‰ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
+    seq: 0,
+    msg: 0,
+    phase: 0,
+    wait: true,
 
     init: function() {
         this.superInit();
+
+        this.slide = [];
+        for (var i = 0; i < this.paper.length; i++) {
+            this.slide[i] = tm.display.Sprite(this.paper[i])
+                .addChildTo(this)
+                .setPosition(SC_W*0.5, SC_H*0.5)
+                .setAlpha(0);
+        }
+
         this.time = 0;
     },
 
     update: function() {
     },
 
-    //ƒƒbƒZ[ƒW•\¦
-    enterMessage: function(y, time, msg, size) {
+    //ã‚¹ãƒ©ã‚¤ãƒ‰ã‚’é€²ã‚ã‚‹
+    advanceSlide: function() {
+        this.slide[this.seq++].tweener.clear().fadeIn(100);
+    },
+
+    //ã‚¹ãƒ©ã‚¤ãƒ‰ã‚’æˆ»ã™
+    backwordSlide: function() {
+        this.slide[this.seq--].tweener.clear().fadeOut(100);
+    },
+
+    //ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
+    enterMessage: function(y, number, size) {
         size = size || 45;
         var that = this;
 
-        if (this.msg) {
-            this.msg.remove();
-            this.msg = null;
-        }
+        this.eraseMessage();
+        this.message = tm.app.Object2D().addChildTo(this);
 
-        this.msg = tm.app.Object2D().addChildTo(this);
-//        pt.tweener.wait(time).call(function(){this.remove();that.msg=null;}.bind(pt));
-
-        tm.display.RectangleShape(SC_W*0.9, 80, {fillStyle: "rgba(0,0,0,0.5)", strokeStyle: "rgba(0,0,0,0.5)"})
-            .addChildTo(this.msg)
+        tm.display.RectangleShape({width: SC_W*0.9, height: 80, fillStyle: "rgba(0,0,0,0.5)", strokeStyle: "rgba(0,0,0,0.5)"})
+            .addChildTo(this.message)
             .setPosition(SC_W*0.5, y);
 
+        var msg = this.question[number] || "undefined";
         tm.display.OutlineLabel(msg, size)
-            .addChildTo(this.msg)
+            .addChildTo(this.message)
             .setParam(this.labelParam)
             .setPosition(SC_W*0.5, y);
     },
     eraseMessage: function() {
-        if (this.msg) {
-            this.msg.remove();
-            this.msg = null;
+        if (this.message) {
+            this.message.remove();
+            this.message = null;
         }
+    },
+
+    enterAnswer: function(x) {
+        x = x || SC_W*0.25;
+        size = 45;
+        this.eraseMessage();
+        this.message = tm.app.Object2D().addChildTo(this);
+
+        for (var i = 0; i < 4; i++) {
+            var y =  SC_H*0.27+SC_H*i*0.15;
+            var base = tm.display.RectangleShape({width: SC_W*0.9, height: 80, fillStyle: "rgba(0,0,0,0.5)", strokeStyle: "rgba(0,0,0,0.5)"})
+                .addChildTo(this.message)
+                .setPosition(SC_W*0.5, y);
+
+            var msg = this.answer[i] || "undefined";
+            tm.display.OutlineLabel(msg, size)
+                .addChildTo(base)
+                .setParam(this.labelParamAns)
+                .setPosition(x-SC_W*0.5, 0);
+        }
+    },
+
+    dispCorrect: function() {
     },
 });
 

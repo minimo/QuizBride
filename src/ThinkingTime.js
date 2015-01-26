@@ -13,39 +13,28 @@ tm.define("quiz.ThinkingTime", {
 
     finish: false,
 
-    init: function(sec) {
+    init: function() {
         this.superInit();
-
-        var that = this;
 
         this.label = tm.display.OutlineLabel("シンキングタイム！", 100)
             .addChildTo(this)
             .setParam(this.labelParam)
             .setPosition(SC_W*0.5, SC_H*0.5);
-        this.label.tweener.clear().wait(5000).fadeOut(10);
 
-        this.start = tm.display.OutlineLabel("START", 100)
+        this.startLabel = tm.display.OutlineLabel("START", 100)
             .addChildTo(this)
             .setParam(this.labelParam)
             .setPosition(SC_W*0.5, SC_H*0.5)
             .setAlpha(0)
             .setScale(5)
             .setRotation(20);
-        this.start.tweener.clear()
-            .wait(5000)
-            .fadeIn(10)
-            .to({scaleX:1, scaleY:1}, 2000, "easeOutBounce")
-            .wait(500)
-            .rotate(0, 1000, "easeOutBounce")
-            .wait(3000)
-            .fadeOut(500);
 
         this.timeup = tm.display.OutlineLabel("TIME UP!!", 100)
             .addChildTo(this)
             .setParam(this.labelParam)
             .setPosition(SC_W*0.5, SC_H*0.5)
             .setAlpha(0)
-            .setScale(10);
+            .setScale(5);
 
         this.sprite = tm.display.Sprite("think", 32, 32)
             .addChildTo(this)
@@ -67,13 +56,6 @@ tm.define("quiz.ThinkingTime", {
             }
             this.time++;
         }
-        this.sprite.tweener.clear()
-            .wait(5000)
-            .move(SC_W-96, SC_H*0.9, 1000*sec)
-            .call(function() {
-                this.stop = true;
-                that.finish = true;
-            }.bind(this.sprite));
 
         this.goal = tm.display.Sprite("think", 32, 32)
             .addChildTo(this)
@@ -88,11 +70,6 @@ tm.define("quiz.ThinkingTime", {
             .setFrameIndex(10)
             .setScale(3)
             .setPosition(SC_W-64, SC_H*0.9-16);
-        this.heart.tweener.clear()
-            .wait(5000)
-            .wait(1000*sec)
-            .to({x:SC_W-64, y:SC_H*0.9-64, alpha:1}, 1000)
-            .to({x:SC_W-64, y:SC_H*0.9-128, alpha:0}, 1000);
 
         this.time = 0;
     },
@@ -101,10 +78,35 @@ tm.define("quiz.ThinkingTime", {
         this.time++;
     },
 
-    skip: function() {
+    start: function(sec) {
+        var that = this;
+        this.label.tweener.clear()
+            .fadeOut(10);
+        this.startLabel.tweener.clear()
+            .fadeIn(10)
+            .to({scaleX:1, scaleY:1}, 2000, "easeOutBounce")
+            .wait(500)
+            .rotate(0, 1000, "easeOutBounce")
+            .wait(3000)
+            .fadeOut(500);
+        this.sprite.tweener.clear()
+            .move(SC_W-96, SC_H*0.9, 1000*sec)
+            .call(function() {
+                this.stop = true;
+                that.finish = true;
+            }.bind(this.sprite));
+        this.heart.tweener.clear()
+            .wait(1000*sec)
+            .to({x:SC_W-64, y:SC_H*0.9-64, alpha:1}, 1000)
+            .to({x:SC_W-64, y:SC_H*0.9-128, alpha:0}, 1000);
     },
 
     finish: function() {
+        this.timeup.tweener.clear()
+            .fadeIn(10)
+            .to({scaleX:1, scaleY:1}, 2000, "easeOutBounce")
+            .wait(2000)
+            .fadeOut(500);
     },
 });
 
