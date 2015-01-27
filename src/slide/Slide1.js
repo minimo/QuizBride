@@ -38,21 +38,9 @@ tm.define("quiz.Slide1", {
     init: function(param) {
         this.superInit();
         this.time = 0;
-
-        this.think = quiz.ThinkingTime()
-            .setPosition(0, 0);
     },
 
     update: function() {
-        var kb = app.keyboard;
-        if (kb.getKeyDown("s") && this.time > 5) {
-            this.phase++;
-            this.time = 0;
-            this.wait = false;
-        }　else {
-            this.time++;
-        }
-
         if (this.wait) return;
 
         switch (this.phase) {

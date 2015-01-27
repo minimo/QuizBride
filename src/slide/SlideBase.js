@@ -39,6 +39,9 @@ tm.define("quiz.SlideBase", {
     init: function() {
         this.superInit();
 
+        this.think = quiz.ThinkingTime()
+            .setPosition(0, 0);
+
         this.slide = [];
         for (var i = 0; i < this.paper.length; i++) {
             this.slide[i] = tm.display.Sprite(this.paper[i])
@@ -47,10 +50,22 @@ tm.define("quiz.SlideBase", {
                 .setAlpha(0);
         }
 
+        this.on("enterframe", function() {
+            var kb = app.keyboard;
+            if (kb.getKeyDown("s")) {
+                this.tick();
+            }
+            this.time++;
+        }, false);
         this.time = 0;
     },
 
-    update: function() {
+    tick: function() {
+        if (this.time > 5 && !this.think.working) {
+            this.phase++;
+            this.wait = false;
+            this.time = 0;
+        }
     },
 
     //スライドを進める
@@ -81,6 +96,8 @@ tm.define("quiz.SlideBase", {
             .setParam(this.labelParam)
             .setPosition(SC_W*0.5, y);
     },
+
+    //メッセージ消去
     eraseMessage: function() {
         if (this.message) {
             this.message.remove();
@@ -88,6 +105,7 @@ tm.define("quiz.SlideBase", {
         }
     },
 
+    //答え表示
     enterAnswer: function(x) {
         x = x || SC_W*0.25;
         size = 45;
@@ -109,11 +127,28 @@ tm.define("quiz.SlideBase", {
         }
     },
 
+    //正解表示
     dispCorrect: function() {
         for (var i = 0; i < 4; i++) {
-            if (this.correct == i) continue;
-            this.ans[i].tweener.fadeOut(300);
+            if (this.correct == i) {
+                this.ans[i].tweener.to({x:SC_W*0.5, y:SC_H*0.5, scaleX:1.2, scaleY:1.2}, 500);
+            } else {
+                this.ans[i].tweener.fadeOut(300);
+            }
         }
+    },
+
+    //タッチorクリック開始処理
+    ontouchstart: function(e) {
+    },
+
+    //タッチorクリック移動処理
+    ontouchmove: function(e) {
+    },
+
+    //タッチorクリック終了処理
+    ontouchend: function(e) {
+        this.tick();
     },
 });
 

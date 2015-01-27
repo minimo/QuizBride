@@ -11,7 +11,7 @@ tm.define("quiz.ThinkingTime", {
 
     labelParam: {fontFamily: "Yasashisa", align: "center", baseline: "middle",outlineWidth: 2, fontWeight:700},
 
-    finish: false,
+    working: false,
 
     init: function() {
         this.superInit();
@@ -99,6 +99,7 @@ tm.define("quiz.ThinkingTime", {
     },
 
     start: function(sec) {
+        this.working = true;
         var that = this;
         this.mask.tweener.clear()
             .wait(5500)
@@ -125,6 +126,7 @@ tm.define("quiz.ThinkingTime", {
     },
 
     finish: function() {
+        this.working = false;
         this.mask.tweener.clear()
             .fadeIn(10)
             .wait(4000)
