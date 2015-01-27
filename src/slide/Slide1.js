@@ -74,11 +74,14 @@ tm.define("quiz.Slide1", {
                 this.think.addChildTo(this);
                 break;
             case 10:
-                this.think.start(10);
+                this.think.start(30);
                 break;
             case 11:
                 this.dispCorrect();
                 this.think.leaveStage();
+                break;
+            case 12:
+                app.replaceScene(quiz.Slide1());
                 break;
         }
         this.wait = true;

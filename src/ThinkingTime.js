@@ -143,10 +143,10 @@ tm.define("quiz.ThinkingTime", {
 
     leaveStage: function() {
         this.sprite.stop = false;
-        this.sprite.tweener.clear().moveBy(150, 0, 1000);
+        this.sprite.tweener.clear().moveBy(150, 0, 3000);
         this.goal.stop = false;
         this.goal.scaleX *= -1;
-        this.goal.tweener.clear().moveBy(150, 0, 1000);
+        this.goal.tweener.clear().moveBy(150, 0, 3000);
     },
 });
 
