@@ -126,7 +126,7 @@ tm.define("quiz.ThinkingTime", {
     },
 
     finish: function() {
-        this.working = false;
+        var that = this;
         this.mask.tweener.clear()
             .fadeIn(10)
             .wait(4000)
@@ -135,7 +135,10 @@ tm.define("quiz.ThinkingTime", {
             .fadeIn(10)
             .to({scaleX:1, scaleY:1}, 2000, "easeOutBounce")
             .wait(2000)
-            .fadeOut(500);
+            .fadeOut(500)
+            .call(function() {
+                that.working = false;
+            });
     },
 
     leaveStage: function() {
