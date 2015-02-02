@@ -48,7 +48,7 @@ tm.define("quiz.SlideBase", {
 
         this.slide = [];
         for (var i = 0; i < this.paper.length; i++) {
-            this.slide[i] = tm.display.Sprite(this.paper[i], SC_W, SC_H)
+            this.slide[i] = tm.display.Sprite(this.paper[i])
                 .addChildTo(this)
                 .setPosition(SC_W*0.5, SC_H*0.5)
                 .setAlpha(0);
