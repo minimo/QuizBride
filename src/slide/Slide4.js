@@ -6,36 +6,36 @@
  */
 (function() {
 
-tm.define("quiz.Slide1", {
+tm.define("quiz.Slide4", {
     superClass: "quiz.SlideBase",
 
     //画像
     paper: [
-        "Q01-0",
-        "Q01-1",
-        "Q01-2",
-        "Q01-3",
+        "Q04-0",
+        "Q04-1",
+        "Q04-2",
+        "Q04-3",
     ],
 
     //スライドテキスト
     text: [
-        "二人にとって大切な初めてのデート",
-        "新郎は新婦に喜んで貰うべくあらゆるプランを考えました",
-        "憧れの紗保子さんに気に入られて、また会う機会を作りたい！",
+        "交際を重ねて半年、機は熟した！",
+        "遂にプロポーズを決意した新郎",
+        "しかし人生初めての大勝負に自信がない・・・",
     ],
 
     //問題文
-    question: "次のデートの機会を作りたい新郎が思いついた“秘策”とは？",
+    question: "新郎がとったプロポーズを成功させる為の“秘策”とは？",
 
     //答え一覧
     answer: {
-        0: "（１）新婦が好きな店を下調べして趣味嗜好が合うように偶然を装う",
-        1: "（２）デートを早めに切り上げて、この人ともっとお話をしたいと思わせる",
-        2: "（３）エステに通って男を磨き、デートマニュアルにある事を全て実行する",
+        0: "（１）カンニングペーパーを読みながらプロポーズした",
+        1: "（２）家族の前で何度もリハーサルした",
+        2: "（３）ブライダルセミナーに通い練習した",
     },
 
     //正解番号
-    correct: 1,
+    correct: 0,
 
     init: function(param) {
         this.superInit();
@@ -65,13 +65,13 @@ tm.define("quiz.Slide1", {
                 this.enterQuestion(40);
                 break;
             case 6:
-                this.enterAnswer(0, 1, 35);
+                this.enterAnswer(0, 1, 45);
                 break;
             case 7:
-                this.enterAnswer(1, 1, 35);
+                this.enterAnswer(1, 1, 45);
                 break;
             case 8:
-                this.enterAnswer(2, 1, 35);
+                this.enterAnswer(2, 1, 45);
                 break;
             case 9:
                 this.think.addChildTo(this);
@@ -84,7 +84,7 @@ tm.define("quiz.Slide1", {
                 this.think.leaveStage();
                 break;
             case 12:
-                app.replaceScene(quiz.Slide2());
+                app.replaceScene(quiz.Slide5());
                 break;
         }
         this.wait = true;
