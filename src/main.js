@@ -17,8 +17,8 @@ var DEBUG = false;
 var MUTEKI = false;
 
 //スクリーンサイズ
-SC_W = 1024;
-SC_H = 768;
+SC_W = 1280;
+SC_H = 800;
 
 //インスタンス
 app = {};

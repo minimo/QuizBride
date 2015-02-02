@@ -15,11 +15,16 @@ tm.define("quiz.SlideBase", {
     //画像
     paper: [],
 
+    //問題文章
+    text: [],
+
     //質問
     question: [],
 
-    //答え一覧
-    answer: [],
+    //回答一覧
+    answer1: [],
+    answer2: [],
+    answer3: [],
 
     //正解番号
     correct: 0,
@@ -39,12 +44,11 @@ tm.define("quiz.SlideBase", {
     init: function() {
         this.superInit();
 
-        this.think = quiz.ThinkingTime()
-            .setPosition(0, 0);
+        this.think = quiz.ThinkingTime().setPosition(0, 0);
 
         this.slide = [];
         for (var i = 0; i < this.paper.length; i++) {
-            this.slide[i] = tm.display.Sprite(this.paper[i])
+            this.slide[i] = tm.display.Sprite(this.paper[i], SC_W, SC_H)
                 .addChildTo(this)
                 .setPosition(SC_W*0.5, SC_H*0.5)
                 .setAlpha(0);
@@ -70,27 +74,27 @@ tm.define("quiz.SlideBase", {
 
     //スライドを進める
     advanceSlide: function() {
-        this.slide[this.seq++].tweener.clear().fadeIn(100);
+        this.slide[this.seq++].tweener.clear().fadeIn(200);
     },
 
     //スライドを戻す
     backwordSlide: function() {
-        this.slide[this.seq--].tweener.clear().fadeOut(100);
+        this.slide[this.seq--].tweener.clear().fadeOut(200);
     },
 
-    //メッセージ表示
-    enterMessage: function(y, number, size) {
+    //テキスト表示
+    enterText: function(y, number, size) {
         size = size || 45;
         var that = this;
 
-        this.eraseMessage();
+        this.eraseText();
         this.message = tm.app.Object2D().addChildTo(this);
 
-        tm.display.RectangleShape({width: SC_W*0.9, height: 80, fillStyle: "rgba(0,0,0,0.5)", strokeStyle: "rgba(0,0,0,0.5)"})
+        tm.display.RectangleShape({width: SC_W*0.9, height: 100, fillStyle: "rgba(0,0,0,0.5)", strokeStyle: "rgba(0,0,0,0.5)"})
             .addChildTo(this.message)
             .setPosition(SC_W*0.5, y);
 
-        var msg = this.question[number] || "undefined";
+        var msg = this.text[number] || "undefined";
         tm.display.OutlineLabel(msg, size)
             .addChildTo(this.message)
             .setParam(this.labelParam)
@@ -98,38 +102,48 @@ tm.define("quiz.SlideBase", {
     },
 
     //メッセージ消去
-    eraseMessage: function() {
+    eraseText: function() {
         if (this.message) {
             this.message.remove();
             this.message = null;
         }
     },
 
-    //答え表示
-    enterAnswer: function(x) {
-        x = x || SC_W*0.25;
-        size = 45;
-        this.eraseMessage();
+    enterQuestion: function(size) {
+        this.eraseText();
         this.message = tm.app.Object2D().addChildTo(this);
 
+        //問題文表示
+        this.ques = tm.display.RectangleShape({width:SC_W*0.95, height:100, fillStyle:"rgba(0,0,0,0.5)", strokeStyle:"rgba(0,0,0,0.5)"})
+            .addChildTo(this.message)
+            .setPosition(SC_W*0.5, SC_H*0.2);
+        tm.display.OutlineLabel(this.question, 40)
+            .addChildTo(this.ques)
+            .setParam(this.labelParam)
+            .setPosition(0, 0);
         this.ans = [];
-        for (var i = 0; i < 4; i++) {
-            var y =  SC_H*0.27+SC_H*i*0.15;
-            this.ans[i] = tm.display.RectangleShape({width: SC_W*0.9, height: 80, fillStyle: "rgba(0,0,0,0.5)", strokeStyle: "rgba(0,0,0,0.5)"})
-                .addChildTo(this.message)
-                .setPosition(SC_W*0.5, y);
+    },
 
-            var msg = this.answer[i] || "undefined";
-            tm.display.OutlineLabel(msg, size)
-                .addChildTo(this.ans[i])
-                .setParam(this.labelParamAns)
-                .setPosition(x-SC_W*0.5, 0);
-        }
+    //回答一覧表示
+    enterAnswer: function(num, x, size) {
+        num = num || 0;
+        x = x || SC_W*0.5;
+        size = size || 45;
+
+        var y = SC_H*0.4+SC_H*num*0.15;
+        this.ans[num] = tm.display.RectangleShape({width:SC_W*0.9, height:100, fillStyle:"rgba(0,0,0,0.5)", strokeStyle:"rgba(0,0,0,0.5)"})
+            .addChildTo(this.message)
+            .setPosition(SC_W*0.5, y);
+
+        tm.display.OutlineLabel(this.answer[num], size)
+            .addChildTo(this.ans[num])
+            .setParam(this.labelParam)
+            .setPosition(0, 0);
     },
 
     //正解表示
     dispCorrect: function() {
-        for (var i = 0; i < 4; i++) {
+        for (var i = 0; i < 3; i++) {
             if (this.correct == i) {
                 this.ans[i].tweener.to({x:SC_W*0.5, y:SC_H*0.5, scaleX:1.2, scaleY:1.2}, 500);
             } else {
