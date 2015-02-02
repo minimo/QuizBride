@@ -45,6 +45,26 @@ quiz.Application = tm.createClass({
     exitApp: function() {
         this.stop();
     },
+    //BGM再生
+    playBGM: function(assetName) {
+        if (this.bgm) {
+            this.bgm.stop();
+        }
+        this.bgm = tm.asset.AssetManager.get(assetName);
+        if (this.bgm) {
+            this.bgm.loop = true;
+            this.bgm.currentTime = 0;
+            this.bgm.play();
+            return this.bgm;
+        }
+        return null;
+    },
+
+    //SoundEffect再生
+    playSE: function(assetName) {
+        var se = tm.asset.AssetManager.get(assetName)
+        if (se) se.clone().play();
+    },
 });
 
 //SpriteのsetFrameIndexをちょっと改造
