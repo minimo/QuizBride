@@ -15,25 +15,27 @@ tm.define("quiz.Slide1", {
         "Q01-1",
         "Q01-2",
         "Q01-3",
-        "Q01-4",
     ],
 
-    //質問
-    question: [
-        "何事にも万全を持って臨む新郎",
-        "それは初デートの時も例外ではありません",
-        "さて、この「３」という数字",
-        "これは初デートに関係ある数字だそうです",
-        "それは以下のうちどれでしょうか？",
+    //スライドテキスト
+    text: [
+        "二人にとって大切な初めてのデート",
+        "新郎は新婦に喜んで貰うべくあらゆるプランを考える",
+        "憧れの紗保子さんに気に入られて次へ繋げたい！",
     ],
+
+    //問題文
+    question: "何としてでも次へのデートに繋げたい新郎が思いついた“秘策”とは？",
 
     //答え一覧
-    answer: [
-        "①　提案したプランの数",
-        "②　渡したプレゼントの数",
-        "③　デートで回った場所の数",
-        "④　残りの変身回数",
-    ],
+    answer: {
+        0: "（１）新婦が好きな店を下調べして趣味嗜好が合うように偶然を装う",
+        1: "（２）早めにデートを終わらせてもっと話をしたいという印象を残す",
+        2: "（３）エステに通って男を磨き、デートマニュアルにある事を全て実行した",
+    },
+
+    //正解番号
+    correct: 1,
 
     init: function(param) {
         this.superInit();
@@ -49,32 +51,33 @@ tm.define("quiz.Slide1", {
                 break;
             case 2:
                 this.advanceSlide();
+                this.enterText(SC_H*0.9, this.msg++);
                 break;
             case 3:
-                this.enterMessage(SC_H*0.8, this.msg++);
+                this.advanceSlide();
+                this.enterText(SC_H*0.9, this.msg++);
                 break;
             case 4:
                 this.advanceSlide();
-                this.enterMessage(SC_H*0.8, this.msg++);
+                this.enterText(SC_H*0.9, this.msg++);
                 break;
             case 5:
-                this.advanceSlide();
-                this.enterMessage(SC_H*0.8, this.msg++);
+                this.enterQuestion(40);
                 break;
             case 6:
-                this.enterMessage(SC_H*0.8, this.msg++);
+                this.enterAnswer(0, 1, 35);
                 break;
             case 7:
-                this.enterMessage(SC_H*0.8, this.msg++);
+                this.enterAnswer(1, 1, 35);
                 break;
             case 8:
-                this.enterAnswer();
+                this.enterAnswer(2, 1, 35);
                 break;
             case 9:
                 this.think.addChildTo(this);
                 break;
             case 10:
-                this.think.start(30);
+                this.think.start(5);
                 break;
             case 11:
                 this.dispCorrect();
