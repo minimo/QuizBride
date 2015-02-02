@@ -90,7 +90,7 @@ tm.define("quiz.SlideBase", {
         this.eraseText();
         this.message = tm.app.Object2D().addChildTo(this);
 
-        tm.display.RectangleShape({width: SC_W*0.9, height: 100, fillStyle: "rgba(0,0,0,0.5)", strokeStyle: "rgba(0,0,0,0.5)"})
+        tm.display.RectangleShape({width: SC_W, height: 100, fillStyle: "rgba(0,0,0,0.5)", strokeStyle: "rgba(0,0,0,0.5)"})
             .addChildTo(this.message)
             .setPosition(SC_W*0.5, y);
 
@@ -114,7 +114,7 @@ tm.define("quiz.SlideBase", {
         this.message = tm.app.Object2D().addChildTo(this);
 
         //問題文表示
-        this.ques = tm.display.RectangleShape({width:SC_W*0.95, height:100, fillStyle:"rgba(0,0,0,0.5)", strokeStyle:"rgba(0,0,0,0.5)"})
+        this.ques = tm.display.RectangleShape({width:SC_W, height:100, fillStyle:"rgba(0,0,0,0.5)", strokeStyle:"rgba(0,0,0,0.5)"})
             .addChildTo(this.message)
             .setPosition(SC_W*0.5, SC_H*0.2);
         tm.display.OutlineLabel(this.question, 40)
@@ -131,7 +131,7 @@ tm.define("quiz.SlideBase", {
         size = size || 45;
 
         var y = SC_H*0.4+SC_H*num*0.15;
-        this.ans[num] = tm.display.RectangleShape({width:SC_W*0.9, height:100, fillStyle:"rgba(0,0,0,0.5)", strokeStyle:"rgba(0,0,0,0.5)"})
+        this.ans[num] = tm.display.RectangleShape({width:SC_W, height:100, fillStyle:"rgba(0,0,0,0.5)", strokeStyle:"rgba(0,0,0,0.5)"})
             .addChildTo(this.message)
             .setPosition(SC_W*0.5, y);
 
@@ -145,7 +145,7 @@ tm.define("quiz.SlideBase", {
     dispCorrect: function() {
         for (var i = 0; i < 3; i++) {
             if (this.correct == i) {
-                this.ans[i].tweener.to({x:SC_W*0.5, y:SC_H*0.5, scaleX:1.2, scaleY:1.2}, 500);
+                this.ans[i].tweener.to({x:SC_W*0.5, y:SC_H*0.5, scaleX:1, scaleY:1}, 500);
             } else {
                 this.ans[i].tweener.fadeOut(300);
             }

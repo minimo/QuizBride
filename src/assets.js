@@ -32,6 +32,21 @@ quiz.assets = {
     "Q02-1": "slide/Q2-01.jpg",
     "Q02-2": "slide/Q2-02.jpg",
     "Q02-3": "slide/Q2-03.jpg",
+
+    "Q03-0": "slide/Q3-00.jpg",
+    "Q03-1": "slide/Q3-01.jpg",
+    "Q03-2": "slide/Q3-02.jpg",
+    "Q03-3": "slide/Q3-03.jpg",
+
+    "Q04-0": "slide/Q4-00.jpg",
+    "Q04-1": "slide/Q4-01.jpg",
+    "Q04-2": "slide/Q4-02.jpg",
+    "Q04-3": "slide/Q4-03.jpg",
+
+    "Q05-0": "slide/Q5-00.jpg",
+    "Q05-1": "slide/Q5-01.jpg",
+    "Q05-2": "slide/Q5-02.jpg",
+    "Q05-3": "slide/Q5-03.jpg",
 }
 
 })();

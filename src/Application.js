@@ -40,6 +40,7 @@ quiz.Application = tm.createClass({
     },
 
     _onLoadAssets: function() {
+        app.playBGM("bgm1");
     },
 
     exitApp: function() {
