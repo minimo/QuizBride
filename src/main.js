@@ -20,6 +20,8 @@ var MUTEKI = false;
 SC_W = 1280;
 SC_H = 800;
 
+THINKING_TIME = 5;
+
 //インスタンス
 app = {};
 

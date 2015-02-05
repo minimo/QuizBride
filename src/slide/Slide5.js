@@ -48,6 +48,7 @@ tm.define("quiz.Slide5", {
         switch (this.phase) {
             case 1:
                 this.advanceSlide();
+                this.enterText(SC_H*0.9, this.msg++);
                 break;
             case 2:
                 this.advanceSlide();
@@ -58,32 +59,28 @@ tm.define("quiz.Slide5", {
                 this.enterText(SC_H*0.9, this.msg++);
                 break;
             case 4:
-                this.advanceSlide();
-                this.enterText(SC_H*0.9, this.msg++);
-                break;
-            case 5:
                 this.enterQuestion(40);
                 break;
-            case 6:
+            case 5:
                 this.enterAnswer(0, 1, 45);
                 break;
-            case 7:
+            case 6:
                 this.enterAnswer(1, 1, 45);
                 break;
-            case 8:
+            case 7:
                 this.enterAnswer(2, 1, 45);
                 break;
-            case 9:
+            case 8:
                 this.think.addChildTo(this);
                 break;
-            case 10:
-                this.think.start(5);
+            case 9:
+                this.think.start(THINKING_TIME);
                 break;
-            case 11:
+            case 10:
                 this.dispCorrect();
                 this.think.leaveStage();
                 break;
-            case 12:
+            case 11:
                 app.replaceScene(quiz.Slide1());
                 break;
         }

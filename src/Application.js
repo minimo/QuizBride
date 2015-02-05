@@ -32,7 +32,7 @@ quiz.Application = tm.createClass({
             bgColor: "black",
             nextScene: function() {
                 this._onLoadAssets();
-                return quiz.Slide1();
+                return quiz.Slide0();
             }.bind(this),
         });
 
@@ -40,7 +40,6 @@ quiz.Application = tm.createClass({
     },
 
     _onLoadAssets: function() {
-        app.playBGM("bgm2");
     },
 
     exitApp: function() {

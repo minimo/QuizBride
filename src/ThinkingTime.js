@@ -108,7 +108,7 @@ tm.define("quiz.ThinkingTime", {
             .fadeOut(10);
         this.startLabel.tweener.clear()
             .fadeIn(10)
-            .to({scaleX:1, scaleY:1}, 2000, "easeOutBounce")
+            .to({scaleX:2, scaleY:2}, 2000, "easeOutBounce")
             .wait(500)
             .rotate(0, 1000, "easeOutBounce")
             .wait(2000)
@@ -133,7 +133,7 @@ tm.define("quiz.ThinkingTime", {
             .fadeOut(500);
         this.timeup.tweener.clear()
             .fadeIn(10)
-            .to({scaleX:1, scaleY:1}, 2000, "easeOutBounce")
+            .to({scaleX:2, scaleY:2}, 2000, "easeOutBounce")
             .wait(2000)
             .fadeOut(500)
             .call(function() {

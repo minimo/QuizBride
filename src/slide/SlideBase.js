@@ -54,6 +54,9 @@ tm.define("quiz.SlideBase", {
                 .setAlpha(0);
         }
 
+        //初期画面の表示
+        this.advanceSlide();
+
         this.on("enterframe", function() {
             var kb = app.keyboard;
             if (kb.getKeyDown("s")) {

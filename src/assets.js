@@ -21,7 +21,7 @@ quiz.assets = {
     "scoreboard": "font/scoreboard.ttf",
 
     //Slide
-    "title":      "slide/QTitle.jpg",
+    "title": "slide/QTitle.jpg",
 
     "Q01-0": "slide/Q1-00.jpg",
     "Q01-1": "slide/Q1-01.jpg",
