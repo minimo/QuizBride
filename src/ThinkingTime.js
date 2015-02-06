@@ -75,7 +75,6 @@ tm.define("quiz.ThinkingTime", {
         this.goal.update = function() {
             if (this.x != this.bx && this.time % 3 == 0) {
                 this.frame = (this.frame+1)%3;
-                this.frame += 10;
                 this.setFrameIndex(this.frame);
             }
             if (this.stop) {
