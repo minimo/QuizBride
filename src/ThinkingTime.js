@@ -139,6 +139,7 @@ tm.define("quiz.ThinkingTime", {
             .call(function() {
                 that.working = false;
             });
+        app.playSE("fue");
     },
 
     leaveStage: function() {

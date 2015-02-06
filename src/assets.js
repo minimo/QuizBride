@@ -16,6 +16,9 @@ quiz.assets = {
     "bgm1":       "assets/QuizIntro.mp3",
     "bgm2":       "assets/QuizBGM.mp3",
 
+    //SE
+    "fue":        "assets/sei_ge_hoissuru01.mp3",
+
     //Font
     "yasasihsa":  "font/07YasashisaAntique.ttf",
     "scoreboard": "font/scoreboard.ttf",
