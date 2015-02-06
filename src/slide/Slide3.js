@@ -25,7 +25,7 @@ tm.define("quiz.Slide3", {
     ],
 
     //問題文
-    question: "新郎が思わず胸キュンしてしまう新婦がとった“ある行動”とは？",
+    question: "新郎が思わず胸キュンしてしまう新婦の“ある行動”とは？",
 
     //答え一覧
     answer: {
@@ -59,7 +59,7 @@ tm.define("quiz.Slide3", {
                 this.enterText(SC_H*0.9, this.msg++);
                 break;
             case 4:
-                this.enterQuestion(40);
+                this.enterQuestion(45);
                 break;
             case 5:
                 this.enterAnswer(0, 1, 40);

@@ -25,7 +25,7 @@ tm.define("quiz.Slide4", {
     ],
 
     //問題文
-    question: "新郎がとったプロポーズを成功させる為の“秘策”とは？",
+    question: "新郎がとったプロポーズ成功の為の“秘策”とは？",
 
     //答え一覧
     answer: {
@@ -59,7 +59,7 @@ tm.define("quiz.Slide4", {
                 this.enterText(SC_H*0.9, this.msg++);
                 break;
             case 4:
-                this.enterQuestion(40);
+                this.enterQuestion(45);
                 break;
             case 5:
                 this.enterAnswer(0, 1, 45);

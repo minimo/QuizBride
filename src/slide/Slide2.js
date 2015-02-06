@@ -59,7 +59,7 @@ tm.define("quiz.Slide2", {
                 this.enterText(SC_H*0.9, this.msg++);
                 break;
             case 4:
-                this.enterQuestion(40);
+                this.enterQuestion(50);
                 break;
             case 5:
                 this.enterAnswer(0, 1, 45);

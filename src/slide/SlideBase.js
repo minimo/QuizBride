@@ -120,7 +120,7 @@ tm.define("quiz.SlideBase", {
         this.ques = tm.display.RectangleShape({width:SC_W, height:100, fillStyle:"rgba(0,0,0,0.5)", strokeStyle:"rgba(0,0,0,0.5)"})
             .addChildTo(this.message)
             .setPosition(SC_W*0.5, SC_H*0.2);
-        tm.display.OutlineLabel(this.question, 40)
+        tm.display.OutlineLabel(this.question, size)
             .addChildTo(this.ques)
             .setParam(this.labelParam)
             .setPosition(0, 0);
