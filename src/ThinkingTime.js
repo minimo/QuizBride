@@ -101,7 +101,7 @@ tm.define("quiz.ThinkingTime", {
         this.working = true;
         var that = this;
         this.mask.tweener.clear()
-            .wait(5500)
+            .wait(4500)
             .fadeOut(500);
         this.label.tweener.clear()
             .fadeOut(10);
@@ -110,7 +110,7 @@ tm.define("quiz.ThinkingTime", {
             .to({scaleX:2, scaleY:2}, 2000, "easeOutBounce")
             .wait(500)
             .rotate(0, 1000, "easeOutBounce")
-            .wait(2000)
+            .wait(1000)
             .fadeOut(500);
         this.sprite.tweener.clear()
             .move(SC_W-96, SC_H*0.9, 1000*sec)

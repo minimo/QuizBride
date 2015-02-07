@@ -65,7 +65,7 @@ tm.define("quiz.Slide3", {
                 this.enterAnswer(0, 1);
                 break;
             case 6:
-                this.enterAnswer(1, 1);
+                this.enterAnswer(1, 1, 58);
                 break;
             case 7:
                 this.enterAnswer(2, 1);

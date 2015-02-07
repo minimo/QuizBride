@@ -118,7 +118,7 @@ tm.define("quiz.SlideBase", {
         this.message = tm.app.Object2D().addChildTo(this);
 
         //問題文表示
-        this.ques = tm.display.RectangleShape({width:SC_W, height:100, fillStyle:"rgba(0,0,0,0.5)", strokeStyle:"rgba(0,0,0,0.5)"})
+        this.ques = tm.display.RectangleShape({width:SC_W, height:120, fillStyle:"rgba(0,0,0,0.5)", strokeStyle:"rgba(0,0,0,0.5)"})
             .addChildTo(this.message)
             .setPosition(SC_W*0.5, SC_H*0.2);
         tm.display.OutlineLabel(this.question, size)

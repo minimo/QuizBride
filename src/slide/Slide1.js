@@ -25,13 +25,13 @@ tm.define("quiz.Slide1", {
     ],
 
     //問題文
-    question: "次のデートの機会を作りたい新郎が思いついた“秘策”とは？",
+    question: "次のデートの機会を作る為の新郎の“秘策”とは？",
 
     //答え一覧
     answer: {
         0: "（１）新婦が好きな店を下調べして趣味嗜好が合うように偶然を装う",
-        1: "（２）デートを早めに切り上げて、この人ともっとお話をしたいと思わせる",
-        2: "（３）エステに通って男を磨き、デートマニュアルにある事を全て実行する",
+        1: "（２）デートを早めに切り上げ、この人ともっとお話をしたいと思わせる",
+        2: "（３）エステに通って男を磨きデートマニュアルにある事を全て実行する",
     },
 
     //正解番号
@@ -63,13 +63,13 @@ tm.define("quiz.Slide1", {
                 this.enterQuestion();
                 break;
             case 5:
-                this.enterAnswer(0, 1);
+                this.enterAnswer(0, 1, 50);
                 break;
             case 6:
-                this.enterAnswer(1, 1);
+                this.enterAnswer(1, 1, 48);
                 break;
             case 7:
-                this.enterAnswer(2, 1);
+                this.enterAnswer(2, 1, 48);
                 break;
             case 8:
                 this.think.addChildTo(this);
