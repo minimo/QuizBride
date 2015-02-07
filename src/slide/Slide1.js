@@ -21,7 +21,7 @@ tm.define("quiz.Slide1", {
     text: [
         "二人にとって大切な初めてのデート",
         "新郎は新婦に喜んで貰うべくあらゆるプランを考えました",
-        "憧れの紗保子さんに気に入られて、また会う機会を作りたい！",
+        "憧れの彼女に気に入られて、また会う機会を作りたい！",
     ],
 
     //問題文
@@ -49,27 +49,27 @@ tm.define("quiz.Slide1", {
         switch (this.phase) {
             case 1:
                 this.advanceSlide();
-                this.enterText(SC_H*0.9, this.msg++);
+                this.enterText(SC_H*0.8, this.msg++);
                 break;
             case 2:
                 this.advanceSlide();
-                this.enterText(SC_H*0.9, this.msg++);
+                this.enterText(SC_H*0.8, this.msg++);
                 break;
             case 3:
                 this.advanceSlide();
-                this.enterText(SC_H*0.9, this.msg++);
+                this.enterText(SC_H*0.8, this.msg++);
                 break;
             case 4:
-                this.enterQuestion(45);
+                this.enterQuestion();
                 break;
             case 5:
-                this.enterAnswer(0, 1, 35);
+                this.enterAnswer(0, 1);
                 break;
             case 6:
-                this.enterAnswer(1, 1, 35);
+                this.enterAnswer(1, 1);
                 break;
             case 7:
-                this.enterAnswer(2, 1, 35);
+                this.enterAnswer(2, 1);
                 break;
             case 8:
                 this.think.addChildTo(this);

@@ -48,7 +48,7 @@ tm.define("quiz.SlideBase", {
 
         this.slide = [];
         for (var i = 0; i < this.paper.length; i++) {
-            this.slide[i] = tm.display.Sprite(this.paper[i])
+            this.slide[i] = tm.display.Sprite(this.paper[i], SC_W, SC_H)
                 .addChildTo(this)
                 .setPosition(SC_W*0.5, SC_H*0.5)
                 .setAlpha(0);
@@ -87,7 +87,7 @@ tm.define("quiz.SlideBase", {
 
     //テキスト表示
     enterText: function(y, number, size) {
-        size = size || 45;
+        size = size || 60;
         var that = this;
 
         this.eraseText();
@@ -113,6 +113,7 @@ tm.define("quiz.SlideBase", {
     },
 
     enterQuestion: function(size) {
+        size = size || 60;
         this.eraseText();
         this.message = tm.app.Object2D().addChildTo(this);
 
@@ -131,7 +132,7 @@ tm.define("quiz.SlideBase", {
     enterAnswer: function(num, x, size) {
         num = num || 0;
         x = x || SC_W*0.5;
-        size = size || 45;
+        size = size || 60;
 
         var y = SC_H*0.4+SC_H*num*0.15;
         this.ans[num] = tm.display.RectangleShape({width:SC_W, height:100, fillStyle:"rgba(0,0,0,0.5)", strokeStyle:"rgba(0,0,0,0.5)"})
@@ -145,10 +146,11 @@ tm.define("quiz.SlideBase", {
     },
 
     //正解表示
-    dispCorrect: function() {
+    dispCorrect: function(scale) {
+        scale = scale || 1.0;
         for (var i = 0; i < 3; i++) {
             if (this.correct == i) {
-                this.ans[i].tweener.to({x:SC_W*0.5, y:SC_H*0.5, scaleX:1, scaleY:1}, 500);
+                this.ans[i].tweener.to({x:SC_W*0.5, y:SC_H*0.5, scaleX:scale, scaleY:scale}, 500);
             } else {
                 this.ans[i].tweener.fadeOut(300);
             }
